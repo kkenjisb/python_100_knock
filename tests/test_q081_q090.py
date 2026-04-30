@@ -7,19 +7,16 @@ from unittest.mock import patch
 
 import pytest
 
-from tests.conftest import load_question_main, load_question_module
-
-
-def _read_source(relative_path: str) -> str:
-    return Path(f"F:/kkenj/workspace/python_100_knock/{relative_path}").read_text(encoding="utf-8")
+from tests.conftest import WORKSPACE_ROOT, load_question_main, load_question_module
 
 
 def _assert_imports_csv(relative_path: str) -> None:
-    tree = ast.parse(_read_source(relative_path))
+    source = (WORKSPACE_ROOT / relative_path).read_text(encoding="utf-8")
+    tree = ast.parse(source)
     assert any(
         isinstance(node, ast.Import) and any(alias.name == "csv" for alias in node.names)
-        for node in tree.body
-    )
+        for node in ast.walk(tree)
+    ), "csv モジュールをインポートしてください"
 
 
 def test_q081(tmp_path: Path, monkeypatch: pytest.MonkeyPatch) -> None:
@@ -49,7 +46,9 @@ def test_q082(tmp_path: Path, monkeypatch: pytest.MonkeyPatch) -> None:
 
 def test_q083(tmp_path: Path, monkeypatch: pytest.MonkeyPatch) -> None:
     _, main = load_question_main("questions/q081_q090/q083.py", "q083")
-    (tmp_path / "test.csv").write_text("1,2,3\n4,5,6\n7,8,9\n", encoding="utf-8")
+    data_dir = tmp_path / "questions" / "data"
+    data_dir.mkdir(parents=True)
+    (data_dir / "q083_test.csv").write_text("1,2,3\n4,5,6\n7,8,9\n", encoding="utf-8")
     monkeypatch.chdir(tmp_path)
 
     with patch("builtins.print") as mock_print:
@@ -80,7 +79,9 @@ def test_q084(tmp_path: Path, monkeypatch: pytest.MonkeyPatch) -> None:
 
 def test_q085(tmp_path: Path, monkeypatch: pytest.MonkeyPatch) -> None:
     _, main = load_question_main("questions/q081_q090/q085.py", "q085")
-    (tmp_path / "test.csv").write_text("id,name\n0001,admin\n0002,guest\n0003,test\n", encoding="utf-8")
+    data_dir = tmp_path / "questions" / "data"
+    data_dir.mkdir(parents=True)
+    (data_dir / "q085_test.csv").write_text("id,name\n0001,admin\n0002,guest\n0003,test\n", encoding="utf-8")
     monkeypatch.chdir(tmp_path)
 
     with patch("builtins.print") as mock_print:
@@ -96,12 +97,24 @@ def test_q085(tmp_path: Path, monkeypatch: pytest.MonkeyPatch) -> None:
 
 def test_q086(monkeypatch: pytest.MonkeyPatch) -> None:
     module, main = load_question_main("questions/q081_q090/q086.py", "q086")
-    monkeypatch.setattr(module.sys, "argv", ["q086.py", "sample"])
 
+    # 引数が1つの場合
+    monkeypatch.setattr(module.sys, "argv", ["q086.py", "sample"])
     with patch("builtins.print") as mock_print:
         main()
-
     mock_print.assert_called_once_with("sample")
+
+    # 引数なし
+    monkeypatch.setattr(module.sys, "argv", ["q086.py"])
+    with patch("builtins.print") as mock_print:
+        main()
+    mock_print.assert_called_once_with("引数の数が不正です")
+
+    # 引数が2つ以上
+    monkeypatch.setattr(module.sys, "argv", ["q086.py", "a", "b"])
+    with patch("builtins.print") as mock_print:
+        main()
+    mock_print.assert_called_once_with("引数の数が不正です")
 
 
 def test_q087() -> None:

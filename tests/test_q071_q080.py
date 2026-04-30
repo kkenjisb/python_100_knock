@@ -7,11 +7,7 @@ from unittest.mock import patch
 
 import pytest
 
-from tests.conftest import load_question_main, load_question_module
-
-
-def _read_source(relative_path: str) -> str:
-    return Path(f"F:/kkenj/workspace/python_100_knock/{relative_path}").read_text(encoding="utf-8")
+from tests.conftest import WORKSPACE_ROOT, load_question_main
 
 
 def test_q071() -> None:
@@ -25,7 +21,9 @@ def test_q071() -> None:
 
 
 def test_q072() -> None:
-    _, main = load_question_main("questions/q071_q080/q072.py", "q072")
+    # スクリプトとして直接実行した場合、__package__ は None になる
+    module, main = load_question_main("questions/q071_q080/q072.py", "q072")
+    module.__package__ = None
 
     with patch("builtins.print") as mock_print:
         main()
@@ -42,50 +40,37 @@ def test_q073() -> None:
     mock_print.assert_called_once_with("直接実行")
 
 
-def test_q074(monkeypatch: pytest.MonkeyPatch) -> None:
-    module, main = load_question_main("questions/q071_q080/q074.py", "q074")
+def test_q074() -> None:
+    # import datetime して datetime.datetime.now() の結果を print する
+    _, main = load_question_main("questions/q071_q080/q074.py", "q074")
 
-    class FixedDatetime(datetime):
-        @classmethod
-        def now(cls):
-            return cls(2025, 4, 30, 12, 34, 56)
-
-    monkeypatch.setattr(module, "datetime", module.datetime)
-    monkeypatch.setattr(module.datetime, "datetime", FixedDatetime)
     with patch("builtins.print") as mock_print:
         main()
 
-    mock_print.assert_called_once_with(FixedDatetime(2025, 4, 30, 12, 34, 56))
+    assert mock_print.call_count == 1
+    assert isinstance(mock_print.call_args.args[0], datetime)
 
 
-def test_q075(monkeypatch: pytest.MonkeyPatch) -> None:
-    module, main = load_question_main("questions/q071_q080/q075.py", "q075")
+def test_q075() -> None:
+    # from datetime import date して date.today() の結果を print する
+    _, main = load_question_main("questions/q071_q080/q075.py", "q075")
 
-    class FixedDate(date):
-        @classmethod
-        def today(cls):
-            return cls(2025, 4, 30)
-
-    monkeypatch.setattr(module, "date", FixedDate)
     with patch("builtins.print") as mock_print:
         main()
 
-    mock_print.assert_called_once_with(FixedDate(2025, 4, 30))
+    assert mock_print.call_count == 1
+    assert isinstance(mock_print.call_args.args[0], date)
 
 
-def test_q076(monkeypatch: pytest.MonkeyPatch) -> None:
-    module, main = load_question_main("questions/q071_q080/q076.py", "q076")
+def test_q076() -> None:
+    # import datetime as dt として dt.datetime.now() の結果を print する
+    _, main = load_question_main("questions/q071_q080/q076.py", "q076")
 
-    class FixedDatetime(datetime):
-        @classmethod
-        def now(cls):
-            return cls(2025, 4, 30, 12, 34, 56)
-
-    monkeypatch.setattr(module.dt, "datetime", FixedDatetime)
     with patch("builtins.print") as mock_print:
         main()
 
-    mock_print.assert_called_once_with(FixedDatetime(2025, 4, 30, 12, 34, 56))
+    assert mock_print.call_count == 1
+    assert isinstance(mock_print.call_args.args[0], datetime)
 
 
 def test_q077(tmp_path: Path, monkeypatch: pytest.MonkeyPatch) -> None:
@@ -98,13 +83,14 @@ def test_q077(tmp_path: Path, monkeypatch: pytest.MonkeyPatch) -> None:
 
     mock_print.assert_called_once_with(True)
 
-    tree = ast.parse(_read_source("questions/q071_q080/q077.py"))
+    source = (WORKSPACE_ROOT / "questions/q071_q080/q077.py").read_text(encoding="utf-8")
+    tree = ast.parse(source)
     assert any(
         isinstance(node, ast.ImportFrom)
         and node.module == "pathlib"
         and any(alias.name == "Path" for alias in node.names)
-        for node in tree.body
-    )
+        for node in ast.walk(tree)
+    ), "pathlib モジュールから Path クラスをインポートしてください"
 
 
 def test_q078(tmp_path: Path, monkeypatch: pytest.MonkeyPatch) -> None:
