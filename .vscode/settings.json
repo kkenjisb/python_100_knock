@@ -11,5 +11,8 @@
   "python.testing.cwd": "${workspaceFolder}",
   "python.analysis.extraPaths": [
     "${workspaceFolder}"
-  ]
+  ],
+  "github.copilot.enable": {
+    "*": false
+  }
 }
