@@ -1,5 +1,6 @@
 from __future__ import annotations
 
+import ast
 import csv
 from pathlib import Path
 from unittest.mock import patch
@@ -7,6 +8,18 @@ from unittest.mock import patch
 import pytest
 
 from tests.conftest import load_question_main, load_question_module
+
+
+def _read_source(relative_path: str) -> str:
+    return Path(f"F:/kkenj/workspace/python_100_knock/{relative_path}").read_text(encoding="utf-8")
+
+
+def _assert_imports_csv(relative_path: str) -> None:
+    tree = ast.parse(_read_source(relative_path))
+    assert any(
+        isinstance(node, ast.Import) and any(alias.name == "csv" for alias in node.names)
+        for node in tree.body
+    )
 
 
 def test_q081(tmp_path: Path, monkeypatch: pytest.MonkeyPatch) -> None:
@@ -31,6 +44,7 @@ def test_q082(tmp_path: Path, monkeypatch: pytest.MonkeyPatch) -> None:
         "4,5,6",
         "7,8,9",
     ]
+    _assert_imports_csv("questions/q081_q090/q082.py")
 
 
 def test_q083(tmp_path: Path, monkeypatch: pytest.MonkeyPatch) -> None:
@@ -46,6 +60,7 @@ def test_q083(tmp_path: Path, monkeypatch: pytest.MonkeyPatch) -> None:
         (["4", "5", "6"],),
         (["7", "8", "9"],),
     ]
+    _assert_imports_csv("questions/q081_q090/q083.py")
 
 
 def test_q084(tmp_path: Path, monkeypatch: pytest.MonkeyPatch) -> None:
@@ -60,6 +75,7 @@ def test_q084(tmp_path: Path, monkeypatch: pytest.MonkeyPatch) -> None:
         "0002,guest",
         "0003,test",
     ]
+    _assert_imports_csv("questions/q081_q090/q084.py")
 
 
 def test_q085(tmp_path: Path, monkeypatch: pytest.MonkeyPatch) -> None:
@@ -75,6 +91,7 @@ def test_q085(tmp_path: Path, monkeypatch: pytest.MonkeyPatch) -> None:
         ({"id": "0002", "name": "guest"},),
         ({"id": "0003", "name": "test"},),
     ]
+    _assert_imports_csv("questions/q081_q090/q085.py")
 
 
 def test_q086(monkeypatch: pytest.MonkeyPatch) -> None:

@@ -1,5 +1,6 @@
 from __future__ import annotations
 
+import ast
 from datetime import date, datetime
 from pathlib import Path
 from unittest.mock import patch
@@ -7,6 +8,10 @@ from unittest.mock import patch
 import pytest
 
 from tests.conftest import load_question_main, load_question_module
+
+
+def _read_source(relative_path: str) -> str:
+    return Path(f"F:/kkenj/workspace/python_100_knock/{relative_path}").read_text(encoding="utf-8")
 
 
 def test_q071() -> None:
@@ -92,6 +97,14 @@ def test_q077(tmp_path: Path, monkeypatch: pytest.MonkeyPatch) -> None:
         main()
 
     mock_print.assert_called_once_with(True)
+
+    tree = ast.parse(_read_source("questions/q071_q080/q077.py"))
+    assert any(
+        isinstance(node, ast.ImportFrom)
+        and node.module == "pathlib"
+        and any(alias.name == "Path" for alias in node.names)
+        for node in tree.body
+    )
 
 
 def test_q078(tmp_path: Path, monkeypatch: pytest.MonkeyPatch) -> None:
