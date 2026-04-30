@@ -7,7 +7,11 @@
 
 
 def main() -> None:
-    pass
+    x = 5
+    for i in range(10):
+        print(i)
+        if i == x:
+            break
 
 if __name__ == "__main__":
     main()

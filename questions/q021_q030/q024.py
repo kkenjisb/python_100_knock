@@ -6,7 +6,9 @@
 
 
 def main() -> None:
-    pass
+    x = 15
+    if x > 10:
+        print("xは10より大きい")
 
 if __name__ == "__main__":
     main()

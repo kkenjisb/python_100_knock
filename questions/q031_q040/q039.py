@@ -7,7 +7,18 @@
 
 
 def main() -> None:
-    pass
+    x = {1, 2, 3}
+    y = {3, 4, 5}
+    
+    print(sorted(x.union(y)))
+    print(sorted(x.intersection(y)))
 
 if __name__ == "__main__":
     main()
+
+
+"""
+$ python questions/q031_q040/q039.py
+[1, 2, 3, 4, 5]
+[3]
+"""

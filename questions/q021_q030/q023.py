@@ -4,7 +4,10 @@
 
 
 def main() -> None:
-    pass
+    lst1 = [1, 2]
+    lst2 = [3, 4]
+    lst = lst1 + lst2
+    print(lst)
 
 if __name__ == "__main__":
     main()

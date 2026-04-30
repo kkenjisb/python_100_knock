@@ -6,7 +6,8 @@
 
 
 def main() -> None:
-    pass
+    with open('test.txt', 'a') as file:
+        file.write('Hello, World!')
 
 if __name__ == "__main__":
     main()

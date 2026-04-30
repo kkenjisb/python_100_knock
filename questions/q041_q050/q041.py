@@ -5,7 +5,8 @@
 
 
 def main() -> None:
-    pass
+    dct = {'id': '0001', 'name': 'guest'}
+    print(dct["name"])
 
 if __name__ == "__main__":
     main()

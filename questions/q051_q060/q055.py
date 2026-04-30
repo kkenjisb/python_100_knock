@@ -10,7 +10,9 @@
 
 
 def main() -> None:
-    pass
+    lst = [[f"{x}-{y}" for y in range(10)] for x in range(10)]
+    print(lst)
+            
 
 if __name__ == "__main__":
     main()

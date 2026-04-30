@@ -9,7 +9,11 @@
 
 
 def main() -> None:
-    pass
+    x = 10
+    y = 20
+    
+    print(x > 15 and y > 15)
+    print(x > 15 or y > 15)
 
 if __name__ == "__main__":
     main()

@@ -6,7 +6,12 @@
 
 
 def main() -> None:
-    pass
+    x = 10
+    x = str(x)
+    print(x)
+    
+    x = int(x)
+    print(10)
 
 if __name__ == "__main__":
     main()

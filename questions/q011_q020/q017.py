@@ -9,7 +9,23 @@
 
 
 def main() -> None:
-    pass
+    a = 10
+    b = 3.14
+    c = "Hello, Python!"
+    d = True
+    
+    print(type(a))
+    print(type(b))
+    print(type(c))
+    print(type(d))
 
 if __name__ == "__main__":
     main()
+
+"""
+$ python questions/q011_q020/q017.py
+<class 'int'>
+<class 'float'>
+<class 'str'>
+<class 'bool'>
+"""

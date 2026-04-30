@@ -5,7 +5,15 @@
 
 
 def main() -> None:
-    pass
+    print("1\n2\n3")
 
 if __name__ == "__main__":
     main()
+
+"""
+以下で確認
+$ python questions/q001_q010/q010.py
+1
+2
+3
+"""

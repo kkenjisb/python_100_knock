@@ -8,9 +8,12 @@
 # (2) 指定されているコマンドライン引数が 1 つではない場合、
 #     メッセージ "引数の数が不正です" を print 関数で出力してください。
 
-
+import sys
 def main() -> None:
-    pass
+    if len(sys.argv) == 2:
+        print(sys.argv[1])
+    else:
+        print("引数の数が不正です")
 
 if __name__ == "__main__":
     main()

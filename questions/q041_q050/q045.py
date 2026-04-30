@@ -8,7 +8,13 @@
 
 
 def main() -> None:
-    pass
+    x = "1, 2, 3"
+    lst = x.split(",")
+    print(lst)
+    
+    y = "&".join(lst)
+    print(y)
+
 
 if __name__ == "__main__":
     main()

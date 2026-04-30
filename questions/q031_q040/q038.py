@@ -9,7 +9,13 @@
 
 
 def main() -> None:
-    pass
+    st = {1, 2, 3}
+    
+    st.add(1)
+    print(sorted(st))
+
+    st.remove(1)
+    print(sorted(st))
 
 if __name__ == "__main__":
     main()

@@ -4,7 +4,13 @@
 
 
 def main() -> None:
-    pass
+    text = None
+    print(None)
 
 if __name__ == "__main__":
     main()
+
+"""
+$ python questions/q011_q020/q016.py
+None
+"""

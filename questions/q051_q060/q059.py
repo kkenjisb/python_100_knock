@@ -7,7 +7,12 @@
 
 
 def main() -> None:
-    pass
+    lst = [1, 2, 3, None, 5]
+    for x in lst:
+        try:
+            print(x * 2)
+        except TypeError as e:
+            print(e)
 
 if __name__ == "__main__":
     main()

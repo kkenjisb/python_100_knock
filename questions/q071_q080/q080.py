@@ -5,7 +5,11 @@
 
 
 def main() -> None:
-    pass
+    try:
+        with open('test.txt', 'r') as file:
+            print(file.read())
+    except FileNotFoundError:
+        print("ファイルが存在しません")
 
 if __name__ == "__main__":
     main()

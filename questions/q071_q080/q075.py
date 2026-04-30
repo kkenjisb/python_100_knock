@@ -5,9 +5,9 @@
 # print 関数で出力してください。
 # - 取得した date オブジェクトをそのまま 1 回 print してください。
 
-
+from datetime import date
 def main() -> None:
-    pass
+    print(date.today())
 
 if __name__ == "__main__":
     main()

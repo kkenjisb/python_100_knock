@@ -10,8 +10,18 @@
 #     [7, 8, 9],
 # ]
 
+import csv
 
 def main() -> None:
+    lst = [
+        [1, 2, 3],
+        [4, 5, 6],
+        [7, 8, 9],
+    ]
+    # newline='' を指定しないと空行が挿入される（\r\n の二重変換防止）
+    with open("test.csv", "w", newline='') as file:
+        writer = csv.writer(file)
+        writer.writerows(lst)
     pass
 
 if __name__ == "__main__":

@@ -7,7 +7,12 @@
 
 
 def main() -> None:
-    pass
+    x = 0
+    try:
+        print(1 / x)
+    except ZeroDivisionError:
+        print("ゼロ除算エラーが発生しました")
+        
 
 if __name__ == "__main__":
     main()

@@ -4,7 +4,8 @@
 
 
 def main() -> None:
-    pass
+    lst = [x for x in range(1, 10) if x % 2 == 0]
+    print(lst)
 
 if __name__ == "__main__":
     main()

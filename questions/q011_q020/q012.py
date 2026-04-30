@@ -4,7 +4,7 @@
 
 
 def main() -> None:
-    pass
+    print(r'C:\test')
 
 if __name__ == "__main__":
     main()

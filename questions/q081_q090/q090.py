@@ -9,9 +9,17 @@
 #     format='[%(asctime)s][%(levelname)-5s] %(message)s',
 # )
 
+import logging
 
 def main() -> None:
-    pass
+    logging.basicConfig(
+        level=logging.INFO,
+        format='[%(asctime)s][%(levelname)-5s] %(message)s',
+    )
+    
+    logger = logging.getLogger(__name__)
+    logger.info("正常終了しました")
+    logger.error("予期せぬエラーが発生しました")
 
 if __name__ == "__main__":
     main()

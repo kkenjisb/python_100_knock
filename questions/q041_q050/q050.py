@@ -6,7 +6,9 @@
 
 
 def main() -> None:
-    pass
+    x = -1
+    if x < 0:
+        raise ValueError("負の値が入力されました")
 
 if __name__ == "__main__":
     main()

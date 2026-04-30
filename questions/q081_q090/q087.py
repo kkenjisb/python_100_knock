@@ -6,7 +6,8 @@
 
 
 def main() -> None:
-    pass
+    val = input("文字を入力してください")
+    print(val)
 
 if __name__ == "__main__":
     main()

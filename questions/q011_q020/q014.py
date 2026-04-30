@@ -4,7 +4,12 @@
 
 
 def main() -> None:
-    pass
+    print(len("Python"))
 
 if __name__ == "__main__":
     main()
+
+"""
+$ python questions/q011_q020/q014.py
+6
+"""

@@ -6,7 +6,9 @@
 
 
 def main() -> None:
-    pass
-
+    st = {1, 2, 3}
+    for item in sorted(st):
+        print(item)
+        
 if __name__ == "__main__":
     main()

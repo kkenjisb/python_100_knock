@@ -14,7 +14,16 @@
 
 
 def main() -> None:
-    pass
-
+    
+    texts = [
+        f"{x} × {y} = {x * y}"
+        for x in range(1, 10)
+        for y in range(1, 10)
+        if "3" in str(x * y)
+    ]
+    write_text = "\n".join(texts)            
+    with open("output.txt", "w") as file:
+        file.write(write_text)
+        
 if __name__ == "__main__":
     main()

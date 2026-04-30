@@ -4,9 +4,9 @@
 # datetime クラスのクラスメソッド now を実行し、取得した現在時刻のオブジェクトを print 関数で出力してください。
 # - 取得した datetime オブジェクトをそのまま 1 回 print してください。
 
-
+import datetime as dt
 def main() -> None:
-    pass
+    print(dt.datetime.now())
 
 if __name__ == "__main__":
     main()

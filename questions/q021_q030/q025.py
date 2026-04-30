@@ -9,7 +9,14 @@
 
 
 def main() -> None:
-    pass
+    x = 10
+    if x > 10:
+        print("xは10より大きい")
+    elif x > 5:
+        print("xは5より大きいが、10以下")
+    else:
+        print("xは5以下")
+        
 
 if __name__ == "__main__":
     main()

@@ -5,7 +5,8 @@
 
 
 def main() -> None:
-    pass
+    x = "1, 2, 3"
+    print(x.replace(",", "&"))
 
 if __name__ == "__main__":
     main()

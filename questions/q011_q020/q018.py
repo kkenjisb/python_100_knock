@@ -5,7 +5,9 @@
 
 
 def main() -> None:
-    pass
+    lst = [1, 2, 3]
+    print(lst)
+    print(lst[0])
 
 if __name__ == "__main__":
     main()

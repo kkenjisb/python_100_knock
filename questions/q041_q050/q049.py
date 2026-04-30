@@ -7,7 +7,11 @@
 
 
 def main() -> None:
-    pass
+    x = None
+    try:
+        print(2 * x)
+    except TypeError as e:
+        print(e)
 
 if __name__ == "__main__":
     main()

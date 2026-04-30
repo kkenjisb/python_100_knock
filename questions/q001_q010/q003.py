@@ -9,6 +9,8 @@
 def main() -> None:
     text1 = 123
     text2 = "Hello"
+    
+    print(text1, text2)
 
 if __name__ == "__main__":
     main()

@@ -6,7 +6,11 @@
 
 
 def main() -> None:
-    pass
+    tpl1 = 1, 2
+    tpl2 = 3, 4
+    tpl = tpl1 + tpl2
+    print(tpl)
+    print(len(tpl))
 
 if __name__ == "__main__":
     main()

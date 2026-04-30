@@ -4,7 +4,13 @@
 
 
 def main() -> None:
-    pass
+    text = "Python"
+    print(text[:2])
 
 if __name__ == "__main__":
     main()
+
+"""
+$ python questions/q011_q020/q015.py
+Py
+"""

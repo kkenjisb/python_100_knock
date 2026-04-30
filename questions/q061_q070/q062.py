@@ -4,9 +4,11 @@
 # 引数に "テスト" を渡して実行してください。
 # ただし、出力する文字列内の "{name}" は引数で受け取った文字列 name の値に置き換えてください。
 
+def greet(name) -> None:
+    print(f"こんにちは、{name} さん")
 
 def main() -> None:
-    pass
+    greet("テスト")
 
 if __name__ == "__main__":
     main()

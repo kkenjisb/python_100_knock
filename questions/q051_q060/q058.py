@@ -6,7 +6,10 @@
 
 
 def main() -> None:
-    pass
+    target_list = [1, 2, 3, None, 5, None, 7]
+    int_str_list = [str(x) for x in target_list if x is not None]
+    
+    print("&".join(int_str_list))
 
 if __name__ == "__main__":
     main()

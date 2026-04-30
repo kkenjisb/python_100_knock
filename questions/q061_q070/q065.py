@@ -5,9 +5,12 @@
 # また、作成した関数を用いて print_args('A', 'B', key1='X', key2='Y') を実行してください。
 # - 先に print(args)、次に print(kwargs) を実行してください。
 
+def print_args(*args, **kwargs):
+    print(args)
+    print(kwargs)
 
 def main() -> None:
-    pass
+    print_args('A', 'B', key1='X', key2='Y')
 
 if __name__ == "__main__":
     main()

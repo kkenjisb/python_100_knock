@@ -6,9 +6,18 @@
 #
 # 学習用サンプルは questions/data/q083_test.csv に置いてあります。
 
+import sys
+from pathlib import Path
+
+sys.path.insert(0, str(Path(__file__).parent))
+
+import csv
 
 def main() -> None:
-    pass
+    with open("questions/data/q083_test.csv", "r", newline='') as file:
+        csv_reader = csv.reader(file)
+        for row in csv_reader:
+            print(row)
 
 if __name__ == "__main__":
     main()

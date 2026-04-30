@@ -19,7 +19,22 @@
 
 
 def main() -> None:
-    pass
+    employees = [
+        {'id': '0001', 'name': '田中', 'location_id': 'L01'},
+        {'id': '0002', 'name': '山田', 'location_id': 'L02'},
+        {'id': '0003', 'name': '小林', 'location_id': 'L01'},
+        {'id': '0004', 'name': '藤本', 'location_id': 'L03'},
+        {'id': '0005', 'name': '佐々木', 'location_id': 'L02'},
+        {'id': '0006', 'name': '松田', 'location_id': 'L04'},
+        {'id': '0007', 'name': '中村', 'location_id': 'L01'},
+        {'id': '0008', 'name': '石川', 'location_id': 'L03'},
+        {'id': '0009', 'name': '清水', 'location_id': 'L05'},
+        {'id': '0010', 'name': '近藤', 'location_id': 'L02'},
+    ]
+    target_location_ids = {'L01', 'L02'}
+    for employ in employees:
+        if employ["location_id"] in target_location_ids:
+            print(employ["id"], employ["name"])
 
 if __name__ == "__main__":
     main()

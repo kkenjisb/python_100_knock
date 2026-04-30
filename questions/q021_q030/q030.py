@@ -6,7 +6,10 @@
 
 
 def main() -> None:
-    pass
+    val = None
+    if not (val is None):
+        print("xはNoneではない")
+        
 
 if __name__ == "__main__":
     main()

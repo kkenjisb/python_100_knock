@@ -4,7 +4,13 @@
 
 
 def main() -> None:
-    pass
+    num = 1
+    count = 0
+    while count < 100:
+        if "3" in str(num):
+            print(num)
+            count += 1
+        num += 1
 
 if __name__ == "__main__":
     main()

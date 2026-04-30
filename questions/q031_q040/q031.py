@@ -5,7 +5,10 @@
 
 
 def main() -> None:
-    pass
+    lst = [1, 2, 3]
+    
+    for item in lst:
+        print(item)
 
 if __name__ == "__main__":
     main()

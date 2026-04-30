@@ -9,9 +9,15 @@
 #     {'id': '0003', 'name': 'test'},
 # ]
 
-
+from pprint import pprint
 def main() -> None:
-    pass
+    lst = [
+        {'id': '0001', 'name': 'admin'},
+        {'id': '0002', 'name': 'guest'},
+        {'id': '0003', 'name': 'test'},
+    ]
+    print(lst)
+    pprint(lst)
 
 if __name__ == "__main__":
     main()

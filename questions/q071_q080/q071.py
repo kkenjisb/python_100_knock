@@ -4,7 +4,7 @@
 
 
 def main() -> None:
-    pass
+    print(__file__)
 
 if __name__ == "__main__":
     main()

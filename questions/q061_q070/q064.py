@@ -7,9 +7,12 @@
 # (1) 引数を指定せずに呼び出す
 # (2) 引数に "管理者" を指定して呼び出す
 
+def welcome_message(name:str = "ゲスト") -> None:
+    print(f"ようこそ、{name} さん")
 
 def main() -> None:
-    pass
+    welcome_message()
+    welcome_message("管理者")
 
 if __name__ == "__main__":
     main()

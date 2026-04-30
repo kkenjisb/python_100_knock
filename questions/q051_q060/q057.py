@@ -7,7 +7,14 @@
 
 
 def main() -> None:
-    pass
+    target_text = "hello"
+    str_counter = {}
+    for str in target_text:
+        str_counter[str] = str_counter[str] + 1 if str in str_counter else 1
+    
+    for str, counter in str_counter.items():
+        print(str, counter)
+        
 
 if __name__ == "__main__":
     main()
