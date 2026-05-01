@@ -71,6 +71,7 @@ def test_q095() -> None:
         ("lets",),
         ("you",),
         ("work",),
+        ("and",),
         ("more",),
     ]
 
@@ -83,7 +84,9 @@ def test_q096() -> None:
 
 def test_q097(tmp_path: Path, monkeypatch: pytest.MonkeyPatch) -> None:
     _, main = load_question_main("questions/q091_q100/q097.py", "q097")
-    (tmp_path / "input.txt").write_text("banana\n", encoding="utf-8")
+    data_dir = tmp_path / "questions" / "data"
+    data_dir.mkdir(parents=True)
+    (data_dir / "q097_input.txt").write_text("banana\n", encoding="utf-8")
     monkeypatch.chdir(tmp_path)
 
     with patch("builtins.print") as mock_print:
@@ -131,8 +134,10 @@ def test_q099() -> None:
 
 def test_q100(tmp_path: Path, monkeypatch: pytest.MonkeyPatch) -> None:
     _, main = load_question_main("questions/q091_q100/q100.py", "q100")
-    sample = Path("F:/kkenj/workspace/python_100_knock/questions/data/q100_input.csv").read_text(encoding="utf-8")
-    (tmp_path / "input.csv").write_text(sample, encoding="utf-8")
+    sample = (Path(__file__).resolve().parents[1] / "questions" / "data" / "q100_input.csv").read_text(encoding="utf-8")
+    data_dir = tmp_path / "questions" / "data"
+    data_dir.mkdir(parents=True)
+    (data_dir / "q100_input.csv").write_text(sample, encoding="utf-8")
     monkeypatch.chdir(tmp_path)
 
     with patch("builtins.print") as mock_print:
