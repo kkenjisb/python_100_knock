@@ -4,9 +4,12 @@
 # ただし、関数 find_numbers は 2 つの引数 start と end を持ち、
 # start 以上 end 未満の正の整数を対象範囲として扱ってください。
 
+def find_numbers(start:int, end:int) -> set:
+    st:set = {i for i in range(start, end) if "3" in str(i)}
+    return st
 
 def main() -> None:
-    pass
+    print(sorted(find_numbers(10,50)))
 
 if __name__ == "__main__":
     main()

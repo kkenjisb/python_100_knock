@@ -7,7 +7,11 @@
 
 
 def main() -> None:
-    pass
+    target_text = 'Python is a programming language that lets you work quickly and integrate systems more effectively'
+    text_lst = target_text.split(' ')
+    for text in text_lst:
+        if len(text) <= 4:
+            print(text)
 
 if __name__ == "__main__":
     main()

@@ -7,9 +7,24 @@
 
 # - 学習用サンプルは questions/data/q097_input.txt に置いてあります。
 
+import sys
+from pathlib import Path
+
+sys.path.insert(0, str(Path(__file__).parent))
 
 def main() -> None:
-    pass
+    with open("questions/data/q097_input.txt", "r") as file:
+        text = file.read()
+    count_dct = {}
+    for val in text:
+        if val in count_dct:
+            count_dct[val] += 1
+        else:
+            count_dct[val] = 1
+            
+    for char, count in count_dct.items():
+        print(char, count)
+
 
 if __name__ == "__main__":
     main()

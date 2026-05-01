@@ -18,9 +18,27 @@
 # 3. join(self, delimiter): 引数で指定された文字列 delimiter でインスタンス変数 items を結合した文字列を返します。
 #    引数 delimiter は省略可能で、デフォルト値は空文字列です。
 
+class StringJoiner:
+    items: list
+    
+    def __init__(self):
+        self.items = []
+        
+    def append(self, item):
+        if item is not None:
+            self.items.append(str(item))
+
+    def join(self, delimiter:str = ''):
+        return delimiter.join(self.items)
+    
 
 def main() -> None:
-    pass
+    target_list = [1, 2, 3, None, 5, None, 7]
+    string_joinner = StringJoiner()
+    for target in target_list:
+        string_joinner.append(target)
+    
+    print(string_joinner.join("&"))
 
 if __name__ == "__main__":
     main()

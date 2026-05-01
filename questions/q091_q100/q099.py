@@ -16,9 +16,40 @@
 # ]
 # - main() は converted_list を return し、補正情報の一覧は pprint してください。
 
+from pprint import pprint
 
 def main() -> None:
-    pass
+    lst = [1, 2, 3, None, 5, None, 7]
+    
+    converted_list = []
+    converted_info_for_pprint = []
+    for index, value in enumerate(lst):
+        
+        # 計算用の値を取得（初期値はNone）（2倍の場合はNoneのまま進む、None等判定失敗は0）
+        tmp_for_culc:int | None = None
+        try:
+            if value % 2 != 0:
+                # 奇数
+                tmp_for_culc = value
+        except:
+            tmp_for_culc = 0
+        
+        # 偶数の場合
+        if tmp_for_culc is None:
+            # そのまま入れる
+            converted_list.append(value)
+            
+        else:
+            # 変換対応
+            converted_list.append(tmp_for_culc * 2)
+            converted_info_for_pprint.append({
+                "index": index,
+                'from': value,
+                'to': tmp_for_culc * 2
+            })
+        
+    pprint(converted_info_for_pprint)
+    return converted_list
 
 if __name__ == "__main__":
     main()

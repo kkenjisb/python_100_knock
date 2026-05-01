@@ -40,8 +40,25 @@
 # - user_id は重複を除かず、ファイル出現順に 1 行ずつ print してください。
 
 
+import sys
+from pathlib import Path
+
+sys.path.insert(0, str(Path(__file__).parent))
+
+import csv
+
 def main() -> None:
-    pass
+    with open("questions/data/q100_input.csv", "r") as file:
+        reader = csv.DictReader(file)
+        csv_dict_list = list(reader)
+    
+    user_ids = [
+        csv_dict["user_id"]
+        for csv_dict in csv_dict_list
+        if csv_dict["operation"] == "OP02_010"
+    ]
+    for user_id in user_ids:
+        print(user_id)
 
 if __name__ == "__main__":
     main()
